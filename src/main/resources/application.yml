@@ -1,0 +1,28 @@
+server:
+  port: 13905
+
+spring:
+  application:
+    name: timestamp-holder
+  profiles:
+    active: ${active-profile:develop}
+  datasource:
+    url: ${datasource-url:jdbc:mysql://127.0.0.1:3306/timestamps_db?useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${datasource-username:root}
+    password: ${datasource-password:password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+
+scheduler:
+  delay:
+    producer: ${producer-delay:1000}
+    consumer: ${consumer-delay:1000}
+  pool-size: ${pool-size:2}
+logging:
+  level:
+    root: ERROR
+    com:
+      daniiltyshchenko: DEBUG
