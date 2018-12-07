@@ -28,17 +28,17 @@ public class TimestampQueueMessageService implements QueueMessageService<Timesta
     private final Queue<TimestampMessage> queue = new LinkedList<>();
 
     @Override
-    public void push(TimestampMessage timestamp) {
+    public synchronized void push(TimestampMessage timestamp) {
         this.queue.add(timestamp);
     }
 
     @Override
-    public TimestampMessage pull() {
+    public synchronized TimestampMessage pull() {
         return this.queue.peek();
     }
 
     @Override
-    public void remove() {
+    public synchronized void remove() {
         this.queue.remove();
     }
 }
